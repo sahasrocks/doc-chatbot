@@ -30,17 +30,17 @@ It allows users to upload documents and ask questions in natural language.
                    |
     -------------------------------
     |                             |
+    | Document Upload | | AI Query |
+    | Service | | Service |
+    | (Multer + FS) | | (Hugging Face) |
+   
+                     |
+              +------v------+
+                | Response |
+                | to Client |
+                +-------------+
 
-+-------v---------+ +-------v--------+
-| Document Upload | | AI Query |
-| Service | | Service |
-| (Multer + FS) | | (Hugging Face) |
-+-----------------+ +----------------+
-|
-+------v------+
-| Response |
-| to Client |
-+-------------+
+
 
 
 ---
@@ -78,3 +78,26 @@ curl -X POST http://localhost:5000/chat \
 {
   "response": "The document explains..."
 }
+
+
+🛠️ Setup & Run
+1. Clone the repo
+git clone https://github.com/yourusername/doc-chatbot.git
+cd doc-chatbot/backend
+
+2. Install dependencies
+npm install
+
+3. Configure .env
+PORT=5000
+HF_API_KEY=your_huggingface_api_key
+HF_MODEL=tiiuae/falcon-7b-instruct
+
+
+HF_MODEL can be any publicly available Hugging Face inference model.
+
+4. Run the server
+node server.js
+
+
+Server will run at http://localhost:5000
