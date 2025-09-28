@@ -1,0 +1,27 @@
+<div class="chat-container">
+  <!-- Header -->
+  <header class="chat-header">
+    <h1>AI-Powered Document Chatbot</h1>
+    <p>Upload a document and ask questions about its content.</p>
+  </header>
+
+  <!-- Chat messages -->
+  <div class="chat-messages" #messagesContainer>
+    <div *ngFor="let msg of messages" class="message">
+      <div class="user-msg"><strong>You:</strong> {{ msg.user }}</div>
+      <div class="bot-msg" *ngIf="msg.bot"><strong>Bot:</strong> {{ msg.bot }}</div>
+    </div>
+  </div>
+
+  <!-- Input + send -->
+  <div class="chat-input">
+    <input [(ngModel)]="userInput" placeholder="Type your message..." />
+    <button (click)="send()">Send</button>
+  </div>
+
+  <!-- File upload -->
+  <div class="chat-upload">
+    <input type="file" (change)="onFileSelected($event)" />
+    <button (click)="upload()" [disabled]="!selectedFile">Upload Document</button>
+  </div>
+</div>
